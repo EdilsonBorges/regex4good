@@ -16,17 +16,9 @@
           	if (!empty($_POST["comment"])) {
           		for ($i=0; $i < 5; $i++) { 
          			$regex = '/([$][a-z]*)[_]([a-z])([a-z]*)/';
-         			$subst = '$1\\U$2\\E$3';
+         			$subst = '$1$2$3';
          			$comment = preg_replace($regex,$subst,$_POST["comment"]);
-         
-         
-         			$re = '/([$][a-z]*)[_]([a-z])([a-z]*)/';
-         			$str = '$bo_ativo';
-         			$subst = '$1\\U$2\\E$3';
-         			$result = preg_replace($re, $subst, $str);
-         
-         echo "The result of the substitution is ".$result;
-          		}
+     			}
              }
          
          }
