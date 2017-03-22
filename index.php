@@ -1,5 +1,10 @@
-<?php
-phpinfo();
-?>
+<!DOCTYPE html>
+<html>
+<body>
 
-// don't worry, this is just a text. (test?)
+<textarea rows="4" cols="50">
+Testing some <?php echo 'some thing'; ?>
+</textarea>
+
+</body>
+</html>
