@@ -9,9 +9,10 @@ function setup() {
 
 function newText() {
   var s = input.value()
-  var regex = /\W+/g;
+  var regex = /(\W+)/g;
   var words = s.split(regex)
   for(i = 0;i < words.length;i++){
-    createSpan(words[i])
+    var span = createSpan(words[i])
+    span.parent(output)
   }
 }
