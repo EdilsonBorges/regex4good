@@ -9,19 +9,20 @@ function process(txt) {
   
   // split by any sequence of "non word" characters
   // The parentheses mean that the delimiters will be retained
+  // var delimiter = /(\W+)/;
   var delimiter = /(\W+)/;
   var tokens = txt.split(delimiter);
-
+  console.log(tokens)
   // This is silly, but I'm just replacing
   // five letter words.
-  for (var i = 0; i < tokens.length; i++) {
-    // Match any 5 letter words and change the token 
-    // to something else
-    var regex = /^[a-z]{5}$/i;
-    if (regex.test(tokens[i])) {
-      tokens[i] = "$#@$&!";
-    }
-  }
+  // for (var i = 0; i < tokens.length; i++) {
+  //   // Match any 5 letter words and change the token 
+  //   // to something else
+  //   var regex = /^[a-z]{5}$/i;
+  //   if (regex.test(tokens[i])) {
+  //     tokens[i] = "$#@$&!";
+  //   }
+  // }
 
   // This is how to make everything back to one big paragraph with join()
   var output = tokens.join('');  
@@ -64,7 +65,7 @@ function setup() {
   // What to do when button pressed
   button.mousePressed(handleInput);
 
-  loadStrings('files/rainbow.txt', fileLoaded);
+  // loadStrings('files/rainbow.txt', fileLoaded);
 
   regexInput = select('#regex');
   globalCheck = select('#global');
