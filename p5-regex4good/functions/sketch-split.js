@@ -8,13 +8,21 @@ function setup() {
 
 function newText() {
   clearP()
-  var s = input.value()
-  var regex = /\s/g;
-  var words = s.split(regex)
+  var inputValue = input.value()
+  var regexSpace = /\s/g;
+  var regexVariables = /([$]\w+)[_]([\w])([\w]+)?/g;
+  var words = inputValue.split(regexSpace)
   for(i = 0;i < words.length;i++){
-    var span = createSpan(words[i]+' ')
-    if(/([$]\w+)[_]([\w])([\w]+)/g.test(words[i])){
+    if(regexVariables.test(words[i])){
+      teste = words[i].replace(regexVariables, function(){
+        var argument3 = arguments[3] ? arguments[3].toLowerCase() : ''
+        return arguments[1].toLowerCase()+arguments[2].toUpperCase()+argument3;
+      })
+      var span = createSpan(teste+' ')
       span.style('background-color','rgb(255, 207, 255)')
+    } else {
+      var span = createSpan(words[i]+' ')
+
     }
     span.parent(output)
   }
