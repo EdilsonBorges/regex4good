@@ -8,14 +8,14 @@ function setup() {
 
 function newText() {
   clearP()
-  var inputValue = input.value()
+  var inputValue = input.value();
   var regexSpace = /\s/g;
   var regexVariables = /([$]\w+)[_]([\w])([\w]+)?/g;
-  var words = inputValue.split(regexSpace)
-  for(i = 0;i < words.length;i++){
-    if(regexVariables.test(words[i])){
+  var words = inputValue.split(regexSpace);
+  for (i = 0;i < words.length;i++) {
+    if (regexVariables.test(words[i])) {
       teste = words[i].replace(regexVariables, function(){
-        var argument3 = arguments[3] ? arguments[3].toLowerCase() : ''
+        var argument3 = arguments[3] ? arguments[3].toLowerCase() : '';
         return arguments[1].toLowerCase()+arguments[2].toUpperCase()+argument3;
       })
       var span = createSpan(teste+' ')
@@ -31,5 +31,6 @@ function newText() {
 function clearP(){
   outputDiv = select('#output');
   outputDiv.remove()
-  createP('').id('output')
+  var output = createP('').id('output')
+  output.parent(result)
 }
