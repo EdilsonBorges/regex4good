@@ -17,7 +17,7 @@ function matchVariables(matchValue){
   value = matchValue;
   for(i = 0; i < 3; i++){
     var value = value.replace(regexVariables, function(){
-      var argument3 = arguments[3] ? arguments[3].toLowerCase() : '';
+      var argument3 = arguments[3] ? arguments[3] : '';
       return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>' + arguments[1] + arguments[2].toUpperCase() + argument3 + '</span>'
     });
   }
@@ -25,13 +25,14 @@ function matchVariables(matchValue){
 }
 
 function matchArrays(matchValue){
-  var regexArray = /([, \(])?array\(([&;a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
+  var regexArray = /([, \(])?array\(([\w\(\)\&\;\:\-\=\,\n\.\ \/\[\]\>\'\"\$\_\+]+)\)/g;
   value = matchValue;
   for(i = 0; i < 3; i++){
     var value = value.replace(regexArray, function(){
       var argument1 = arguments[1] ? arguments[1] : '';
       return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
     });
+    console.log(value)
   }
   return value
 }
