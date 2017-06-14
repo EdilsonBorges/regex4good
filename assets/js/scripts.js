@@ -9,16 +9,18 @@ function setup() {
 function newText() {
   clearP()
   var inputValue = input.value().replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
-  console.log(inputValue)
   var regexVariables = /([$]\w+)[_]([\w])([\w]+)?/g;
-  var regexArray = /([, \(])array\(([a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
+  var regexArray = /([, \(])?array\(([a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
   var wordsReplace = inputValue.replace(regexVariables, function(){
     var argument3 = arguments[3] ? arguments[3].toLowerCase() : '';
     var matchedWords = arguments[1].toLowerCase() + arguments[2].toUpperCase() + argument3;
     return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+matchedWords+'</span>'
   });
-    var p = createP(wordsReplace)
-    return p.parent(output)
+  var wordsReplace = wordsReplace.replace(regexArray, function(){
+    var argument1 = arguments[1] ? arguments[1].toLowerCase() : '';
+     return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
+  });
+  return createP(wordsReplace).parent(output)  
 }
 
 function clearP(){
