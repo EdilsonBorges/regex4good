@@ -13,6 +13,12 @@ function newText() {
   var regexVariables = /([$]\w+)[_]([\w])([\w]+)?/g;
   var regexArray = /([, \(])array\(([a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
   var words = inputValue.split(regexSpace);
+  var wordsReplace = inputValue.replace(regexVariables, function(r){
+    console.log(arguments)
+    var argument3 = arguments[3] ? arguments[3].toLowerCase() : '';
+    return arguments[1].toLowerCase() + arguments[2].toUpperCase() + argument3;
+  });
+  console.log(wordsReplace)
   for (i = 0;i < words.length;i++) {
     if (regexVariables.test(words[i])) {
       var replacedMatchVariables = words[i].replace(regexVariables, function(){
