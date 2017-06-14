@@ -9,21 +9,28 @@ function setup() {
 function newText() {
   clearP()
   var inputValue = input.value().replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
-  var regexArray = /([, \(])?array\(([a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
-  var wordsReplace = inputValue.replace(regexArray, function(){
-    var argument1 = arguments[1] ? arguments[1].toLowerCase() : '';
-     return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
-  });
-  return createP(matchVariables(wordsReplace)).parent(output)  
+  return createP(matchVariables(matchArrays(inputValue))).parent(output)  
 }
 
-function matchVariables(value){
+function matchVariables(matchValue){
   var regexVariables = /([$]\w+)[_]([\w])([\w]+)?/g;
-  return value.replace(regexVariables, function(){
-    var argument3 = arguments[3] ? arguments[3].toLowerCase() : '';
-    var matchedWords = arguments[1].toLowerCase() + arguments[2].toUpperCase() + argument3;
-    return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+matchedWords+'</span>'
+  value = matchValue;
+  for(i = 0; i < 3; i++){
+    var value = value.replace(regexVariables, function(){
+      var argument3 = arguments[3] ? arguments[3].toLowerCase() : '';
+      return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>' + arguments[1] + arguments[2].toUpperCase() + argument3 + '</span>'
+    });
+  }
+  return value
+}
+
+function matchArrays(matchValue){
+  var regexArray = /([, \(])?array\(([a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
+  var value = matchValue.replace(regexArray, function(){
+    var argument1 = arguments[1] ? arguments[1] : '';
+     return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
   });
+  return value
 }
 
 function clearP(){
