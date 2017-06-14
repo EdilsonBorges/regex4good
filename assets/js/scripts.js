@@ -32,7 +32,6 @@ function matchArrays(matchValue){
       var argument1 = arguments[1] ? arguments[1] : '';
       return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
     });
-    console.log(value)
   }
   return value
 }
