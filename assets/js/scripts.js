@@ -25,11 +25,14 @@ function matchVariables(matchValue){
 }
 
 function matchArrays(matchValue){
-  var regexArray = /([, \(])?array\(([a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
-  var value = matchValue.replace(regexArray, function(){
-    var argument1 = arguments[1] ? arguments[1] : '';
-     return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
-  });
+  var regexArray = /([, \(])?array\(([&;a-zA-Z0-9\-\=\,\n\.\ \/\[\]\>\'\"\$\_\*]*)\)/g;
+  value = matchValue;
+  for(i = 0; i < 3; i++){
+    var value = value.replace(regexArray, function(){
+      var argument1 = arguments[1] ? arguments[1] : '';
+      return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
+    });
+  }
   return value
 }
 
