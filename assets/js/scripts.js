@@ -18,19 +18,19 @@ function matchVariables(matchValue){
   for(i = 0; i < 3; i++){
     var value = value.replace(regexVariables, function(){
       var argument3 = arguments[3] ? arguments[3] : '';
-      return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>' + arguments[1] + arguments[2].toUpperCase() + argument3 + '</span>'
+      return '<span style=\'background-color:#cff9d4; cursor:pointer\'>' + arguments[1] + arguments[2].toUpperCase() + argument3 + '</span>'
     });
   }
   return value
 }
 
 function matchArrays(matchValue){
-  var regexArray = /([, \(])?array\(([\w\(\)\&\;\:\-\=\,\n\.\ \/\[\]\>\'\"\$\_\+]+)\)/g;
+  var regexArray = /([, \(])?array\(([\w&$#;:\-="'<>_,. \/\[\]\n+]+)\)/g;
   value = matchValue;
   for(i = 0; i < 3; i++){
     var value = value.replace(regexArray, function(){
       var argument1 = arguments[1] ? arguments[1] : '';
-      return '<span style=\'background-color:rgb(255, 207, 255); cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
+      return '<span style=\'background-color:#cff9d4; cursor:pointer\'>'+ argument1 + '[' + arguments[2] + ']</span>';
     });
   }
   return value
