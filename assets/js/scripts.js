@@ -18,7 +18,7 @@ function matchVariables(matchValue){
   for(i = 0; i < 3; i++){
     var value = value.replace(regexVariables, function(){
       var argument3 = arguments[3] ? arguments[3] : '';
-      return '<span style=\'background-color:#cff9d4; cursor:pointer\'>' + arguments[1] + arguments[2].toUpperCase() + argument3 + '</span>'
+        return '<span style=\'background-color:#cff9d4; cursor:pointer\'>' + arguments[1] + arguments[2].toUpperCase() + argument3 + '</span>'
     });
   }
   return value
@@ -38,7 +38,7 @@ function matchArrays(matchValue){
 
 function clearP(){
   outputDiv = select('#output');
-  outputDiv.remove()
-  var output = createP('').id('output')
-  output.parent(result)
+  outputDiv.remove();
+  var output = createP('').id('output');
+  output.parent(result);
 }
